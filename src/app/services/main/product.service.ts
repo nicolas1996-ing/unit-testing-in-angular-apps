@@ -34,25 +34,31 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiUrl}/products`);
   }
 
-  getAll(limit?: number, offset?: number) {
+  getAll(limit?: number, offset?: number): Observable<Product[]> {
+    // optional query params
     let params = new HttpParams();
     if (limit && offset != null) {
       params = params.set('limit', limit);
       params = params.set('offset', offset);
     }
+
+    // request
     return this.http
       .get<Product[]>(`${this.apiUrl}/products`, {
         params,
       })
       .pipe(
-        retry(3),
-        map((products) =>
-          products.map((item) => {
-            return {
-              ...item,
-              taxes: 0.19 * item.price,
-            };
-          })
+        retry(3), // retry 3 times
+        map(
+          (
+            products // map data
+          ) =>
+            products.map((item) => {
+              return {
+                ...item,
+                taxes: item.price > 0 ? 0.19 * item.price : 0,
+              };
+            })
         )
       );
   }
@@ -73,7 +79,7 @@ export class ProductService {
         if (error.status === HttpStatusCode.Unauthorized) {
           return throwError(() => 'No estas permitido');
         }
-        return throwError('Ups algo salio mal');
+        return throwError(() => 'Ups algo salio mal');
       })
     );
   }
