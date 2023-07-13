@@ -44,7 +44,7 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ["Chrome"],
     // para github CI/CD
-    customLauchers: {
+    customLaunchers: {
       ChromeHeadlessCI: {
         base: 'ChromeHeadless',
         flags: ['--no-sandbox']
