@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { MasterCompleteService } from './master-complete.service';
 import { ValueService } from './value.service';
 
-fdescribe('MasterCompleteService', () => {
+describe('MasterCompleteService', () => {
   let masterCompleteService: MasterCompleteService;
   let valueServiceSpy: jasmine.SpyObj<ValueService>; // spy A.
 

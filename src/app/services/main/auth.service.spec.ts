@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
 import { TokenService } from './token.service';
 
-fdescribe('AuthService', () => {
+describe('AuthService', () => {
   let authService: AuthService;
   let httpController: HttpTestingController; // services test http request
   let tokenService: TokenService;

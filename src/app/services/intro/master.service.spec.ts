@@ -2,7 +2,7 @@ import { FakeValueService } from '../mock/value.service.fake';
 import { MasterService } from './master.service';
 import { ValueService } from './value.service';
 
-fdescribe('MasterService', () => {
+describe('MasterService', () => {
   let masterService: MasterService;
   let valueService: ValueService;
 
